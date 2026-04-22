@@ -1,0 +1,35 @@
+# ===== Java / Maven =====
+backend/target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# ===== Node / Angular =====
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.env
+
+# ===== IDE =====
+.idea/
+.vscode/
+*.iml
+*.suo
+.project
+.classpath
+.settings/
+
+# ===== Docker =====
+.env
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+*~
+
+# ===== Spring Boot =====
+spring-shell.log
+application-local.properties
+application-prod.properties
