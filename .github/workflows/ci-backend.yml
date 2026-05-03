@@ -27,6 +27,16 @@ jobs:
       - name: Run tests
         working-directory: backend
         run: mvn test
+- name: SonarCloud Analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        working-directory: backend
+        run: |
+          mvn sonar:sonar \
+            -Dsonar.projectKey=MaramYahyaoui_fleet-management \
+            -Dsonar.organization=maramyahyaoui \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.token=${{ secrets.SONAR_TOKEN }}
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
