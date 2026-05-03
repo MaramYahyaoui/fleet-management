@@ -27,7 +27,8 @@ jobs:
       - name: Run tests
         working-directory: backend
         run: mvn test
-- name: SonarCloud Analysis
+
+      - name: SonarCloud Analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         working-directory: backend
