@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fleet-frontend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fleet-frontend
+  template:
+    metadata:
+      labels:
+        app: fleet-frontend
+    spec:
+      containers:
+        - name: fleet-frontend
+          image: maramyahyaoui/fleet-frontend:latest
+          ports:
+            - containerPort: 4200
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleet-frontend-service
+spec:
+  selector:
+    app: fleet-frontend
+  ports:
+    - port: 4200
+      targetPort: 4200
+  type: NodePort

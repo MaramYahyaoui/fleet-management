@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fleet-backend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fleet-backend
+  template:
+    metadata:
+      labels:
+        app: fleet-backend
+    spec:
+      containers:
+        - name: fleet-backend
+          image: maramyahyaoui/fleet-backend:latest
+          ports:
+            - containerPort: 9090
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-service:3306/flotte
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: root
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleet-backend-service
+spec:
+  selector:
+    app: fleet-backend
+  ports:
+    - port: 9090
+      targetPort: 9090
+  type: ClusterIP
