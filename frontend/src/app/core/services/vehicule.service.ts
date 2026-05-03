@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { environment } from '../../../environements/environement';
@@ -43,70 +44,6 @@ export class VehiculeService {
       .pipe(map(r => r.data));
   }
 
-mport { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
-import { environment } from '../../../environements/environement';
-import { ApiResponse, Vehicule, AlerteMaintenance, VehiculeActif } from '../models/models';
-
-@Injectable({ providedIn: 'root' })
-export class VehiculeService {
-  private url = `${environment.apiUrl}/vehicules`;
-
-  constructor(private http: HttpClient) {}
-
-mport { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
-import { environment } from '../../../environements/environement';
-import { ApiResponse, Vehicule, AlerteMaintenance, VehiculeActif } from '../models/models';
-
-@Injectable({ providedIn: 'root' })
-export class VehiculeService {
-  private url = `${environment.apiUrl}/vehicules`;
-
-  constructor(private http: HttpClient) {}
-
-  getAll(statut?: string): Observable<Vehicule[]> {
-    let params = new HttpParams();
-    if (statut) params = params.set('statut', statut);
-    return this.http.get<ApiResponse<Vehicule[]>>(this.url, { params })
-      .pipe(map(r => r.data));
-  }
-
-  getById(id: number): Observable<Vehicule> {
-    return this.http.get<ApiResponse<Vehicule>>(`${this.url}/${id}`)
-      .pipe(map(r => r.data));
-  }
-
-  getActifs(): Observable<Vehicule[]> {
-    return this.http.get<ApiResponse<Vehicule[]>>(`${this.url}/actifs`)
-      .pipe(map(r => r.data));
-  }
-
-  getAlertesMaintenance(seuil?: number): Observable<AlerteMaintenance[]> {
-    let params = new HttpParams();
-    if (seuil) params = params.set('seuil', seuil.toString());
-  getAll(statut?: string): Observable<Vehicule[]> {
-    let params = new HttpParams();
-    if (statut) params = params.set('statut', statut);
-    return this.http.get<ApiResponse<Vehicule[]>>(this.url, { params })
-      .pipe(map(r => r.data));
-  }
-
-  getById(id: number): Observable<Vehicule> {
-    return this.http.get<ApiResponse<Vehicule>>(`${this.url}/${id}`)
-      .pipe(map(r => r.data));
-  }
-
-  getActifs(): Observable<Vehicule[]> {
-    return this.http.get<ApiResponse<Vehicule[]>>(`${this.url}/actifs`)
-      .pipe(map(r => r.data));
-  }
-
-  getAlertesMaintenance(seuil?: number): Observable<AlerteMaintenance[]> {
-    let params = new HttpParams();
-    if (seuil) params = params.set('seuil', seuil.toString());
   update(id: number, vehicule: Vehicule): Observable<Vehicule> {
     return this.http.put<ApiResponse<Vehicule>>(`${this.url}/${id}`, vehicule)
       .pipe(map(r => r.data));
